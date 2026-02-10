@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import { Shield, Linkedin, Mail, Loader2 } from 'lucide-react';
+import { Shield, Linkedin, Mail, Loader2, Hexagon } from 'lucide-react';
 import { Candidate } from '../types';
 
 interface AuthProps {
@@ -38,48 +39,48 @@ const Auth: React.FC<AuthProps> = ({ onLogin }) => {
   return (
     <div className="flex flex-col items-center justify-center min-h-[600px] w-full max-w-md mx-auto">
       <div className="mb-12 text-center">
-        <div className="w-20 h-20 bg-white rounded-[32px] mx-auto mb-8 flex items-center justify-center shadow-2xl group transition-transform hover:rotate-6">
-           <Shield size={36} className="text-black" />
+        <div className="w-20 h-20 bg-emerald-50 rounded-[32px] mx-auto mb-8 flex items-center justify-center shadow-xl group transition-transform hover:rotate-6 border border-emerald-100">
+           <Hexagon size={36} className="text-emerald-600" fill="currentColor" fillOpacity={0.1} strokeWidth={1.5} />
         </div>
-        <h1 className="text-5xl font-black mb-4 tracking-tighter uppercase">Vera AI</h1>
-        <p className="text-zinc-500 font-bold uppercase tracking-widest text-xs">Verified Career Ecosystem</p>
+        <h1 className="text-4xl font-black mb-4 tracking-tighter text-slate-900">Welcome Back</h1>
+        <p className="text-slate-500 font-medium">Sign in to access your verified career profile</p>
       </div>
 
       {isAnalyzing ? (
         <div className="flex flex-col items-center gap-8 animate-in fade-in zoom-in duration-500">
            <div className="relative">
-             <div className="absolute inset-0 bg-blue-500 blur-[40px] opacity-20 animate-pulse"></div>
-             <Loader2 size={56} className="text-blue-500 animate-spin relative z-10" />
+             <div className="absolute inset-0 bg-emerald-100 blur-[40px] opacity-50 animate-pulse"></div>
+             <Loader2 size={56} className="text-emerald-600 animate-spin relative z-10" />
            </div>
            <div className="text-center space-y-2">
-             <p className="text-xl font-bold tracking-tight">Syncing Career Graph...</p>
-             <p className="text-[10px] text-zinc-600 font-mono uppercase tracking-widest">VERIFYING_IDENTITY_STATE // OIDC_PROTO</p>
+             <p className="text-xl font-bold tracking-tight text-slate-900">Verifying Credentials...</p>
+             <p className="text-xs text-slate-500 font-mono uppercase tracking-widest">Checking Fraud Database</p>
            </div>
            
-           <div className="w-64 h-0.5 bg-zinc-800 rounded-full overflow-hidden mt-4">
-              <div className="h-full bg-blue-500 animate-[loading_2s_ease-in-out_infinite]"></div>
+           <div className="w-64 h-1 bg-slate-100 rounded-full overflow-hidden mt-4">
+              <div className="h-full bg-emerald-500 animate-[loading_2s_ease-in-out_infinite]"></div>
            </div>
         </div>
       ) : (
-        <div className="w-full space-y-4">
+        <div className="w-full space-y-4 bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
           <button 
             onClick={() => handleSocialLogin('LinkedIn')}
-            className="w-full p-5 bg-[#0077b5] hover:bg-[#006097] text-white rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-3 transition-all transform hover:scale-[1.02] active:scale-95 shadow-lg shadow-blue-900/20"
+            className="w-full p-4 bg-[#0077b5] hover:bg-[#006097] text-white rounded-xl font-bold text-sm flex items-center justify-center gap-3 transition-all transform hover:scale-[1.01] active:scale-95 shadow-lg shadow-blue-500/20"
           >
             <Linkedin size={20} />
-            Connect LinkedIn Graph
+            Continue with LinkedIn
           </button>
           
           <button 
             onClick={() => handleSocialLogin('Google')}
-            className="w-full p-5 bg-white text-black hover:bg-zinc-200 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-3 transition-all transform hover:scale-[1.02] active:scale-95"
+            className="w-full p-4 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 rounded-xl font-bold text-sm flex items-center justify-center gap-3 transition-all transform hover:scale-[1.01] active:scale-95"
           >
             <Mail size={20} />
-            Connect Google Identity
+            Continue with Google
           </button>
 
-          <p className="text-[10px] text-zinc-600 text-center mt-8 max-w-xs mx-auto leading-relaxed font-bold uppercase tracking-widest">
-            Vera AI bypasses the resume. By signing in, you initialize a verified interaction profile for instant interviewing.
+          <p className="text-xs text-slate-400 text-center mt-6 leading-relaxed">
+            By continuing, you agree to our Terms of Service. We prioritize your data privacy.
           </p>
         </div>
       )}
