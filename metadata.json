@@ -1,0 +1,8 @@
+{
+  "name": "Veritas AI: High-Stakes Interview Engine",
+  "description": "An asynchronous video interview platform featuring IRT-based question parity, real-time authenticity monitoring, and contextual AI follow-up probes.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
