@@ -2,46 +2,51 @@
 import { IRTQuestion, Job } from './types';
 
 export const QUESTION_BANK: IRTQuestion[] = [
-  { id: '1', text: 'Explain the internal implementation of a Distributed Locking mechanism using Redis. What happens during a network partition?', beta: 0.85, alpha: 1.2, category: 'System Design' },
-  { id: '2', text: 'Compare and contrast the performance characteristics of B-Trees vs. LSM-Trees in high-write-throughput environments.', beta: 0.75, alpha: 1.1, category: 'Algorithms' },
-  { id: '3', text: 'How would you mitigate a cascading failure in a microservices architecture that utilizes asynchronous event sourcing?', beta: 0.9, alpha: 1.3, category: 'System Design' },
-  { id: '4', text: 'Describe the memory layout of a high-performance concurrent garbage collector. Focus on how it handles write barriers.', beta: 0.95, alpha: 1.4, category: 'Concurrency' },
-  { id: '5', text: 'Explain the trade-offs of using GraphQL in a high-traffic public API compared to REST with HATEOAS.', beta: 0.65, alpha: 0.9, category: 'System Design' },
-  { id: '6', text: 'Discuss the security implications of JWT storage in modern browser environments. How do you prevent CSRF/XSS specifically?', beta: 0.7, alpha: 1.0, category: 'Security' },
-  { id: '7', text: 'We just lost our primary budget for this quarter. Why should we still consider moving forward with your solution now instead of next year?', beta: 0.80, alpha: 1.1, category: 'Sales' },
-  { id: '8', text: 'Your competitor is offering a 40% discount and a faster implementation timeline. How do you defend our premium positioning without trashing them?', beta: 0.85, alpha: 1.2, category: 'Sales' },
+  // DATA ANALYST QUESTIONS
+  { id: 'da1', text: 'You find a significant discrepancy between the marketing dashboard and the sales ledger. The CEO is presenting in 30 minutes. Walk me through your immediate triage process.', beta: 0.85, alpha: 1.2, category: 'Data Integrity' },
+  { id: 'da2', text: 'Explain how you would handle a dataset where 30% of the demographic fields are NULL, but you need to segment by region for a critical report.', beta: 0.75, alpha: 1.1, category: 'Data Cleaning' },
+  { id: 'da3', text: 'I don’t care about the R-squared value. Tell me, in plain English, why this model predicts customer churn better than our gut feeling.', beta: 0.90, alpha: 1.3, category: 'Communication' },
+  
+  // STRATEGIST QUESTIONS
+  { id: 'st1', text: 'We are launching a B2B SaaS product in a saturated market. Do we price for penetration or skimming? Justify your choice with a specific comparable.', beta: 0.95, alpha: 1.4, category: 'GTM Strategy' },
+  { id: 'st2', text: 'Our CAC has doubled in the last quarter. You have 60 seconds to outline three hypotheses and how you would validate them.', beta: 0.85, alpha: 1.2, category: 'Growth Metrics' },
+  
+  // SALES (AE/AM) QUESTIONS
+  { id: 'sa1', text: 'I am a VP of Engineering. I just told you "We are happy with our current solution." Pivot this objection into a discovery opportunity.', beta: 0.80, alpha: 1.1, category: 'Objection Handling' },
+  { id: 'sa2', text: 'Walk me through a deal you lost. Not one where the budget disappeared—one where you got outplayed. What happened?', beta: 0.85, alpha: 1.2, category: 'Resilience' },
+  { id: 'sa3', text: 'Stop pitching features. Sell me the problem I don’t know I have yet.', beta: 0.90, alpha: 1.3, category: 'Discovery' },
 ];
 
 export const MOCK_JOBS: Job[] = [
   {
     id: 'j1',
-    title: 'Senior Distributed Systems Engineer',
-    company: 'Neuralink',
-    location: 'Remote / San Francisco',
-    salary: '$220k - $310k',
-    tags: ['Rust', 'Distributed Systems', 'Low Latency'],
-    description: 'Lead the architecture of our real-time telemetry pipelines.',
-    requirements: 'Experience with consensus protocols (Raft/Paxos) and lock-free data structures.'
-  },
-  {
-    id: 'j4',
-    title: 'Strategic Account Executive',
-    company: 'Stripe',
-    location: 'New York / Hybrid',
-    salary: '$150k + $150k OTE',
-    tags: ['Sales', 'FinTech', 'Negotiation'],
-    description: 'Own high-stakes relationships with global enterprise partners.',
-    requirements: 'Proven track record of $2M+ ACV deals and exceptional objection handling.'
+    title: 'Senior Data Analyst',
+    company: 'Spotify',
+    location: 'Remote / NY',
+    salary: '$140k - $180k',
+    tags: ['SQL', 'Tableau', 'Python'],
+    description: 'Turn petabytes of listening data into actionable product insights.',
+    requirements: 'Expert SQL, experience with A/B test significance, and ability to push back on stakeholders.'
   },
   {
     id: 'j2',
-    title: 'Founding Infrastructure Lead',
-    company: 'Vera AI',
-    location: 'London / Hybrid',
-    salary: '$180k - $250k + Equity',
-    tags: ['Go', 'Kubernetes', 'Cloud Native'],
-    description: 'Build the global backbone for verified career identity.',
-    requirements: 'Strong background in cloud architecture and zero-trust security.'
+    title: 'Enterprise Account Executive',
+    company: 'Salesforce',
+    location: 'San Francisco / Hybrid',
+    salary: '$150k Base + $150k OTE',
+    tags: ['SaaS Sales', 'Closing', 'Hunter'],
+    description: 'Own the full sales cycle for our Financial Services vertical.',
+    requirements: '5+ years closing 6-figure deals. MEDDIC methodology preferred.'
+  },
+  {
+    id: 'j3',
+    title: 'Product Strategist',
+    company: 'McKinsey Digital',
+    location: 'London / Travel',
+    salary: '$180k - $250k',
+    tags: ['GTM', 'Pricing', 'Consulting'],
+    description: 'Define the digital future for Fortune 500 clients.',
+    requirements: 'Strong modeling skills and ability to defend frameworks under pressure.'
   }
 ];
 

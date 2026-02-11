@@ -1,3 +1,4 @@
+
 export enum AppState {
   LANDING = 'LANDING',
   AUTH = 'AUTH',
@@ -57,6 +58,22 @@ export interface IntegrityEvent {
   severity: 'LOW' | 'HIGH';
 }
 
+export interface AssessmentWeights {
+    technicalAccuracy: number;
+    structuralIntegrity: number;
+    assertivenessIndex: number;
+    signalToNoiseRatio: number;
+    seniorityAlignment: number;
+}
+
+export interface SpeechMetrics {
+  wpm: number;
+  fillerWordCount: number;
+  fillerWords: string[];
+  tonality: 'Monotone' | 'Expressive' | 'Aggressive' | 'Nervous' | 'Professional';
+  clarityScore: number;
+}
+
 export interface InterviewResult {
   candidateId: string;
   responses: Array<{
@@ -64,10 +81,12 @@ export interface InterviewResult {
     transcript: string;
     scores: {
       technicalAccuracy: number;
-      coherence: number;
-      authenticity: number;
+      structuralIntegrity: number;
+      assertivenessIndex: number;
+      signalToNoiseRatio: number;
       seniorityAlignment: number;
     };
+    speechMetrics?: SpeechMetrics;
     flags: string[];
     followUp?: {
       probe: string;
@@ -86,4 +105,9 @@ export interface InterviewResult {
   aiDecisionReason: string;
   integrityLog: IntegrityEvent[];
   timestamp: string;
+  feedbackReport?: {
+      strengths: string[];
+      growthAreas: string[];
+      careerTips: string;
+  };
 }

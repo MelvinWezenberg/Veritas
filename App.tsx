@@ -22,18 +22,18 @@ const MOCK_CANDIDATES: (Candidate & { results?: InterviewResult })[] = [
       candidateId: 'c1',
       overallScore: 92,
       aiRecommendation: 'HIRE',
-      aiDecisionReason: 'Expert knowledge of distributed consensus; strong communication during follow-up.',
+      aiDecisionReason: 'Expert knowledge of distributed consensus; high assertiveness index during follow-up.',
       timestamp: new Date().toISOString(),
       integrityLog: [],
       responses: [
         {
           questionId: '1',
           transcript: "In distributed systems, Redis locks use the Redlock algorithm. During a network partition, we require a majority quorum of nodes to maintain safety. I've implemented this in high-throughput payment pipelines before...",
-          scores: { technicalAccuracy: 95, coherence: 90, authenticity: 95, seniorityAlignment: 90 },
+          scores: { technicalAccuracy: 95, structuralIntegrity: 90, assertivenessIndex: 95, signalToNoiseRatio: 92, seniorityAlignment: 90 },
           flags: [],
           followUp: {
-            probe: "How would you handle clock drift between Redis nodes in this scenario?",
-            response: "Clock drift is mitigated by adding a drift factor to the TTL calculation. If the elapsed time + drift exceeds the limit, the lock is invalid.",
+            probe: "You mentioned quorum. What is the specific recovery latency impact if 2/5 nodes fail during a write?",
+            response: "Latency increases marginally as the client must wait for the majority ack, but availability is maintained. The trade-off is acceptable for CP systems.",
             score: 94
           }
         }
@@ -48,6 +48,7 @@ const App: React.FC = () => {
   const [allCandidates, setAllCandidates] = useState(MOCK_CANDIDATES);
   const [applications, setApplications] = useState<Application[]>([]);
   const [activeJob, setActiveJob] = useState<Job | null>(null);
+  const [useMockHardware, setUseMockHardware] = useState(false);
 
   const handleLogin = (user: Candidate) => {
     setCurrentUser(user);
@@ -72,7 +73,8 @@ const App: React.FC = () => {
     setAppState(AppState.SYSTEM_CHECK);
   };
 
-  const handleSystemCheckComplete = () => {
+  const handleSystemCheckComplete = (forceMock: boolean = false) => {
+    setUseMockHardware(forceMock);
     setAppState(AppState.INTERVIEW);
   };
 
@@ -210,7 +212,11 @@ const App: React.FC = () => {
                 {appState === AppState.INTERVIEW && (
                     <div className="h-screen flex flex-col justify-center bg-white">
                         {(currentUser || allCandidates[0]) ? 
-                            <InterviewFlow candidate={currentUser || allCandidates[0]} onComplete={handleInterviewComplete} /> 
+                            <InterviewFlow 
+                                candidate={currentUser || allCandidates[0]} 
+                                onComplete={handleInterviewComplete} 
+                                useMockHardware={useMockHardware}
+                            /> 
                         : null}
                     </div>
                 )}
